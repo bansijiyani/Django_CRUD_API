@@ -41,7 +41,8 @@ def student_update(request, pk):
         requests.put(f'{API_BASE_URL}/update', json=data)
         return redirect('student_list')
     student = requests.get(f'{API_BASE_URL}/display').json()
-    student = next((s for s in student if s[0] == pk), None)
+    # student = next((s for s in student if s[0] == pk), None)
+    student = next((s for s in student if s['no'] == pk), None)
     return render(request, 'student_data/student_form.html', {'student': student})
 
 def student_delete(request, pk):
